@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15 Puzzle</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body ng-app="puzzle" ng-controller="PuzzlePlay">
+    <div class="app-wrapper">
+        <!-- header App -->
+        <div class="header">
+            <h1>15 Puzzle</h1>
+        </div>
+        <!-- ! header App -->
+        <h3 class="option-title">Select Style of Puzzle:</h3>
+        <!-- Select puzzle styles -->
+        <select name="repeatSelect" id="repeatSelect" ng-model="puzzle_style" ng-change="resetStyle()" >
+          <option value="9">3X3</option>
+          <option value="16">4X4</option>
+          <option value="25">5X5</option>
+        </select>
+        <!-- ! Select puzzle styles -->
+        </br></br>
+        <!-- reset Button -->
+        <button ng-click="reset()">Start New Game</button>
+        <!-- ! reset Button -->
+        <!-- Puzzle block -->
+        <div ng-class="'style-'+puzzle_style" class="puzzles-wrapper">
+    		<div id="t{{number.num}}" ng-repeat="(key, number) in numbers" ng-class="'x'+( ((key) % getSqrt(puzzle_style))+1 )+'y'+getY(key + 1)" ng-click="clickStep(key)" class="item">{{number.num}}</div>
+        </div>
+        <!-- ! Puzzle block -->
+        <!-- Indicators -->
+        <div><strong>Steps: </strong>{{stepCount}}</div>
+        <div><strong>Timer (sec): </strong>{{timer}}</div>
+        <!-- ! Indicators -->
+    </div>
+</body>
+<script src="js/angular.min.js"></script>
+<script src="js/main.js"></script>
+</html>
